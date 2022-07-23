@@ -3,7 +3,7 @@ sudo: required
 services:
   - docker # Generally needed
 
-# TAG can be anything (used inside docker.. MYTAG also works)
+# TAG can be anything (used inside docker. MYTAG also works)
 before_install:
   - docker build -t dbeken85/docker-react -f Dockerfile.dev .
 
