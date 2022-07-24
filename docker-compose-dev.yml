@@ -1,24 +1,19 @@
-version: "3"
-
-# What it should do:
-# Docker can combine both of them and they can communicate with each other.
-# Ports only to connect to the containers from local machine.
-# No ports to be specified for the connection between the containers.
+version: '3'
 services:
   web:
     build:
-      context: . # Specify files and folders
+      context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000" # Connect local 3000 -> 3000 in container
+      - '3000:3000'
     volumes:
-      - /home/node/app/node_modules # Don't mapp this folder to something outside the container & reverse, not mapping stuff outside to /app/node_modules inside
-      - .:/home/node/app
+      - /app/node_modules
+      - .:/app
   tests:
     build:
       context: .
       dockerfile: Dockerfile.dev
     volumes:
-      - /home/node/app/node_modules # Don't mapp this folder to something outside the container & reverse, not mapping stuff outside to /app/node_modules inside
-      - .:/home/node/app
-    command: ["npm", "run", "test"]
+      - /app/node_modules
+      - .:/app
+    command: ['npm', 'run', 'test']
