@@ -7,13 +7,13 @@ services:
     ports:
       - "3000:3000" # Connect local 3000 -> 3000 in container
     volumes:
-      - /app/node_modules
-      - .:/app
+      - /home/node/app/node_modules
+      - .:/home/node/app
   tests:
     build:
       context: .
       dockerfile: Dockerfile.dev
     volumes:
-      - /app/node_modules
-      - .:/app
-    command: ['npm', 'run', 'test']
+      - /home/node/app/node_modules
+      - .:/home/node/app
+    command: ["npm", "run", "test"]
