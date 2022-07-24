@@ -18,7 +18,7 @@ RUN npm run build
 
 # Directly continue -> second block (builder tag ends here)
 FROM nginx:alpine
-
+EXPOSE 80
 # Copy from first container to this (like normal container build), defined via stages.
 # Static content automatically served up when nginx starts.
 COPY --from=builder /home/node/app/build /usr/share/nginx/html 
