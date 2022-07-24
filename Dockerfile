@@ -4,7 +4,7 @@ FROM node:16-alpine as builder
 #USER node
  
 RUN mkdir -p /home/node/app
-WORKDIR /home/node/app
+WORKDIR "/home/node/app"
  
 COPY --chown=node:node ./package.json ./
 RUN npm install
@@ -17,7 +17,7 @@ RUN npm run build
 
 
 # Directly continue -> second block (builder tag ends here)
-FROM nginx:alpine
+FROM nginx
 EXPOSE 80
 # Copy from first container to this (like normal container build), defined via stages.
 # Static content automatically served up when nginx starts.
